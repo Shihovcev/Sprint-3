@@ -40,8 +40,7 @@ public class Main {
         String dishType = scanner.nextLine();
         System.out.println("Введите название блюда:");
         String dishName = scanner.nextLine();
-
-        // добавьте новое блюдо
+        dc.addNewDish(dishType,dishName);    // добавьте новое блюдо
     }
 
     private static void generateDishCombo() {
