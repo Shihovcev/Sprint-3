@@ -25,7 +25,9 @@ public class Main {
                     generateDishCombo();
                     break;
                 case "3":
-                    return;
+                    exit();
+                default:
+                    System.out.println("Такой команды нет");
             }
         }
     }
@@ -49,7 +51,14 @@ public class Main {
         System.out.println("Начинаем конструировать обед...");
 
         System.out.println("Введите количество наборов, которые нужно сгенерировать:");
-        int numberOfCombos = scanner.nextInt();
+        int numberOfCombos;
+        try {
+            int number = scanner.nextInt();
+            numberOfCombos = number;
+        } catch (Exception e) {
+            System.out.println("Ошибка ввода, введите целое число... \n");
+            return;
+        }
         scanner.nextLine();
 
         System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
@@ -66,4 +75,15 @@ public class Main {
         dc.GenerateListDishes(menu, numberOfCombos);
 
     }
+
+    private static void exit(){
+        System.out.println("Вы уверенны что хотите выйти? Да / Нет");
+        String exit = scanner.nextLine();
+        if (exit.equals("Да")){
+            System.exit(0);
+        }else{
+            printMenu();
+        }
+    }
+
 }

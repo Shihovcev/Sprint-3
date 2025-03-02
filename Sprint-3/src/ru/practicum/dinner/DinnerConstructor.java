@@ -24,26 +24,36 @@ public class DinnerConstructor {
         }
     }
 
-    void GenerateListDishes(ArrayList<String> typeDish, int numberOfCombos){
+    void GenerateListDishes(ArrayList<String> typeDish, int numberOfCombos) {
         Random random = new Random();
+
+        for (String dishType : typeDish) {
+            if (!menu.containsKey(dishType)) { // Проверяем, существует ли такой тип блюда в меню
+                System.out.println("Тип блюда '" + dishType + "' не найден в меню. \n");
+
+            }
+            if (typeDish.size() == 1 && !menu.containsKey(dishType)) {
+                numberOfCombos = 0;
+            }
+        }
+
         for (int i = 0; i < numberOfCombos; i++) { // Считаем сколько комлектов должно быть
             System.out.println("Комбо " + (i + 1));
             String combo = "";
 
-            for(String dishType : typeDish){
+            for (String dishType : typeDish) {
                 if (menu.containsKey(dishType)) { // Проверяем, существует ли такой тип блюда в меню
                     ArrayList<String> dishes = menu.get(dishType); // Получаем список блюд для данного типа
                     int rand = random.nextInt(dishes.size()); // Генерируем случайный индекс
                     String selectedDish = dishes.get(rand); // Выбираем случайное блюдо
                     combo += selectedDish + " "; // Добавляем его в комбинацию
-                } else {
-                    System.out.println("Тип блюда '" + dishType + "' не найден в меню.");
                 }
             }
-            System.out.println(combo);
+            System.out.println(combo + "\n");
         }
     }
-
-
 }
+
+
+
 
